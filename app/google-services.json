@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "583199904442",
+    "project_id": "mindyourpet-273bc",
+    "storage_bucket": "mindyourpet-273bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583199904442:android:b2a3abb217a47887df6883",
+        "android_client_info": {
+          "package_name": "com.example.mindyourpet2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583199904442-nr4i5e87q8mnkv9b7polm3n6bj6nnqvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNEkhm8unSGFktcIa2nIx4oOPMkiPw1Qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583199904442-nr4i5e87q8mnkv9b7polm3n6bj6nnqvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
