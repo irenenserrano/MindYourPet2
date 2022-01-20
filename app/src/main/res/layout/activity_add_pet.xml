@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".AddPetActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_add_pet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/add_pet_title"
+        android:background="@color/purple_500"
+        app:titleTextColor="@color/white"/>
     <EditText
         android:id="@+id/pet_name"
         android:layout_width="300dp"
