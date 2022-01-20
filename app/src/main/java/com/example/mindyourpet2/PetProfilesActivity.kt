@@ -1,5 +1,6 @@
 package com.example.mindyourpet2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -34,7 +35,8 @@ class PetProfilesActivity : AppCompatActivity() {
 
         val fab : View = findViewById(R.id.fab)
         fab.setOnClickListener {
-            Toast.makeText(it.context,"you just clicked the fab", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, AddPetActivity ::class.java)
+            startActivity(intent)
         }
     }
 }
