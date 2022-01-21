@@ -14,20 +14,25 @@
         android:background="@color/purple_500"
         app:title="@string/pet_profiles_title"
         app:titleTextColor="@color/white" />
-    
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="511dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/toolbar_main"
         tools:listitem="@layout/pet_profile" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/submit"
-        android:src="@drawable/ic_action_name" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/submit"
+            android:src="@drawable/ic_action_name" />
+    </FrameLayout>
 </LinearLayout>
