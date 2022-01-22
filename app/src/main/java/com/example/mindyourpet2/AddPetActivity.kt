@@ -1,6 +1,7 @@
 package com.example.mindyourpet2
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +46,9 @@ class AddPetActivity : AppCompatActivity() {
             }.addOnFailureListener { e ->
                 Log.d(TAG, "Error adding document", e)
             }
+
+            val intent = Intent(this, PetProfilesActivity::class.java)
+            startActivity(intent)
         }
     }
 
