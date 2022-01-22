@@ -33,7 +33,7 @@ class AddPetActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             val species = spinner.selectedItem
             val editText = findViewById<EditText>(R.id.pet_name)
-            val petName = editText.getText().toString()
+            val petName = editText.text.toString()
 
             val pet = hashMapOf(
                 "name" to petName,
