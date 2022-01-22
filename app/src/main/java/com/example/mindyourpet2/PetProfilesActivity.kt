@@ -37,25 +37,16 @@ class PetProfilesActivity : AppCompatActivity() {
         //this creates a vertical layout manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        //ArrayList of PetProfilesData
-        val data = mutableListOf<PetProfilesData>()
-
         db.collection("pets").get().addOnSuccessListener { result ->
-            for (document in result) {
-
-                val petName = document.data["name"].toString()
-
-                data.add(PetProfilesData(petName))
-            }
+            //ArrayList of PetProfilesData
+            val data = mutableListOf<PetProfilesData>()
+            result.forEach { document -> data.add(PetProfilesData(document.data["name"].toString())) }
             //this will pass the arraylist to our adapter
             val adapter = PetProfilesAdapter(data)
-
             //setting the adapter with the recyclerview
             recyclerview.adapter = adapter
         }.addOnFailureListener { exception ->
             Log.w(TAG, "Error getting documents.", exception)
         }
-
     }
-
 }
