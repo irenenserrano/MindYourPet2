@@ -5,6 +5,7 @@
     <string name="submit">submit</string>
     <string name="pet_profiles_title">Pets</string>
     <string name="add_pet_title">Add Pet</string>
+    <string name="reminders_title">Reminders</string>
     <string-array name="species">
         <item>-</item>
         <item>Cat</item>
