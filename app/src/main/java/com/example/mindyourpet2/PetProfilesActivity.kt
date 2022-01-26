@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 
 class PetProfilesActivity : AppCompatActivity() {
     val db = Firebase.firestore
+    lateinit var id: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet_profiles)
@@ -23,6 +24,7 @@ class PetProfilesActivity : AppCompatActivity() {
             val intent = Intent(this, AddPetActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun onStart() {
@@ -40,9 +42,9 @@ class PetProfilesActivity : AppCompatActivity() {
         db.collection("pets").get().addOnSuccessListener { result ->
             //ArrayList of PetProfilesData
             val data = mutableListOf<PetProfilesData>()
-            result.forEach { document -> data.add(PetProfilesData(document.data["name"].toString())) }
+            result.forEach { document -> data.add(PetProfilesData(document.data["name"].toString(), document.id)) }
             //this will pass the arraylist to our adapter
-            val adapter = PetProfilesAdapter(data)
+            val adapter = PetProfilesAdapter(data,this, Bundle())
             //setting the adapter with the recyclerview
             recyclerview.adapter = adapter
         }.addOnFailureListener { exception ->
