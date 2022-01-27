@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddReminderActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_add_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/add_pet_title"
+        android:background="@color/purple_500"
+        app:titleTextColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/reminder_title"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:hint="Pet Name"
+        android:inputType="textMultiLine|textPersonName"
+        android:textAlignment="center" />
+
+    <DatePicker
+        android:id="@+id/reminder_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="76dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"/>
+
+    <TimePicker
+        android:id="@+id/reminder_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="73dp"
+        android:timePickerMode="spinner" />
+
+    <Spinner
+        android:id="@+id/reminder_frequency"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/reminder_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            app:cornerRadius="0dp"/>
+    </LinearLayout>
+</LinearLayout>

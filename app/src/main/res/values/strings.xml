@@ -11,4 +11,10 @@
         <item>Cat</item>
         <item>Dog</item>
     </string-array>
+    <string-array name="frequency">
+        <item>Don\'t Repeat</item>
+        <item>Every Day</item>
+        <item>Every Week</item>
+        <item>Every Month</item>
+    </string-array>
 </resources>
