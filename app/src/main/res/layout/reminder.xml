@@ -25,13 +25,21 @@
         app:layout_constraintTop_toBottomOf="@id/reminder_title" />
 
     <TextView
+        android:id="@+id/reminder_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="time"
+        app:layout_constraintLeft_toRightOf="@id/complete_button"
+        app:layout_constraintTop_toBottomOf="@id/reminder_date"/>
+    <TextView
         android:id="@+id/reminder_frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="frequency"
         app:layout_constraintLeft_toRightOf="@id/complete_button"
-        app:layout_constraintTop_toBottomOf="@id/reminder_date" />
+        app:layout_constraintTop_toBottomOf="@id/reminder_time" />
 
     <CheckBox
         android:id="@+id/complete_button"
