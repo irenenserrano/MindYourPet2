@@ -11,24 +11,27 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class PetProfilesAdapter(private val mList: List<PetProfilesData>, context: Context, bundle: Bundle) : RecyclerView.Adapter<PetProfilesAdapter.ViewHolder>() {
-    private val context = context
-    private val bundle = bundle
+class PetProfilesAdapter(private val mList: List<PetProfilesData>, private val context: Context, private val bundle: Bundle) : RecyclerView.Adapter<PetProfilesAdapter.ViewHolder>() {
+
     //create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //inflate the pet_profile view, which is used to hold the list item
         val view = LayoutInflater.from(parent.context).inflate(R.layout.pet_profile, parent, false)
-        return ViewHolder(view, context, bundle)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val PetProfilesData = mList[position]
+        val petProfilesData = mList[position]
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = PetProfilesData.text
+        holder.textView.text = petProfilesData.text
 
-        holder.id = PetProfilesData.id
+        holder.textView.setOnClickListener {
+            val intent = Intent(context, RemindersActivity::class.java)
+            intent.putExtra("petID", petProfilesData.id)
+            startActivity(context, intent, bundle)
+        }
 
     }
 
@@ -38,17 +41,8 @@ class PetProfilesAdapter(private val mList: List<PetProfilesData>, context: Cont
     }
 
     // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View, context: Context, bundle: Bundle) : RecyclerView.ViewHolder(ItemView) {
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val textView: TextView = itemView.findViewById(R.id.petProfile)
-        lateinit var id: String
-        init {
-            textView.setOnClickListener {
-                Toast.makeText(it.context, "ID is " + id, Toast.LENGTH_LONG).show()
-                val intent = Intent(context, RemindersActivity::class.java)
-                intent.putExtra("petID", id)
-                startActivity(context, intent, bundle)
-            }
-        }
     }
 
 

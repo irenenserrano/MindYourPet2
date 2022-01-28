@@ -11,7 +11,7 @@
         android:id="@+id/toolbar_add_reminder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/add_pet_title"
+        app:title="@string/add_reminder_title"
         android:background="@color/purple_500"
         app:titleTextColor="@color/white"/>
 
