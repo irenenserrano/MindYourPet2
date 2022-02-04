@@ -73,6 +73,9 @@ class AddReminderActivity : AppCompatActivity() {
                 }.addOnFailureListener { e ->
                     Log.d(TAG, "Error adding document", e)
                 }
+
+            Toast.makeText(this, "Reminder Added", Toast.LENGTH_SHORT).show()
+            editText.text.clear()
         }
 
     }
