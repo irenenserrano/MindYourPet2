@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MindYourPet2">
         <activity
+            android:name=".ReminderActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddPetActivity"
             android:exported="false" />
         <activity

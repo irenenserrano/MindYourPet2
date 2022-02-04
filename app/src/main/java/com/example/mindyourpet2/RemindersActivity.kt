@@ -67,7 +67,7 @@ class RemindersActivity : AppCompatActivity() {
                 val date = sdf.format(netDate).toString()
                 val frequency = document.data["frequency"].toString()
 
-                data.add(RemindersData(title, date, frequency))
+                data.add(RemindersData(title, date, frequency, document.id, petID))
             }
             val adapter = RemindersAdapter(data, this, Bundle())
 

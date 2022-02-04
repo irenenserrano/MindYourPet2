@@ -17,5 +17,6 @@
         <item>Every Day</item>
         <item>Every Week</item>
         <item>Every Month</item>
+        <item>Every Year</item>
     </string-array>
 </resources>

@@ -24,6 +24,12 @@ class RemindersAdapter(private val mList:List<RemindersData>, private val contex
         holder.date.text = RemindersData.date
         holder.frequency.text = RemindersData.frequency
 
+        holder.title.setOnClickListener {
+            val intent = Intent(context, ReminderActivity::class.java)
+            intent.putExtra("reminderID", RemindersData.reminderID)
+            intent.putExtra("petID", RemindersData.petID)
+            startActivity(context, intent, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
