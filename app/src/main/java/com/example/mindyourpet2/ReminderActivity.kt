@@ -54,7 +54,7 @@ class ReminderActivity : AppCompatActivity() {
                         ("Every Week") -> cal.add(Calendar.WEEK_OF_MONTH, 1)
                         ("Every Month") -> cal.add(Calendar.MONTH, 1)
                         ("Every Year") -> cal.add(Calendar.YEAR, 1)
-                        else -> {
+                        else -> { db.collection("pets").document(petID).collection("reminders").document(reminderID).delete()
                         }
                     }
 
