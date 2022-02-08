@@ -1,5 +1,6 @@
 package com.example.mindyourpet2
 
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -39,10 +40,10 @@ class ReminderActivity : AppCompatActivity() {
 
         val completeTask: Button = findViewById(R.id.complete_button)
         completeTask.setOnClickListener {
-            db.collection("pets").document(petID).collection("reminders").document().get()
+            db.collection("pets").document(petID).collection("reminders").document(reminderID).get()
                 .addOnSuccessListener { reminder ->
-                    val timestamp = reminder?.get("timestamp") as com.google.firebase.Timestamp
-                    val millisec = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+                    val ts = reminder.get("timestamp") as com.google.firebase.Timestamp
+                    val millisec = ts.seconds * 1000 + ts.nanoseconds / 1000000
                     val netDate = Date(millisec)
                     val frequency = reminder.get("frequency").toString()
                     val cal: Calendar = Calendar.getInstance()
@@ -56,10 +57,19 @@ class ReminderActivity : AppCompatActivity() {
                         else -> {
                         }
                     }
+
                     val sdf = SimpleDateFormat("MM-dd-yyyy hh:mm aa")
                     val date = sdf.format(cal.time).toString()
                     Toast.makeText(this, date, Toast.LENGTH_LONG).show()
                     val time = Timestamp(cal.timeInMillis)
+                    val map = mapOf( "timestamp" to time)
+                    db.collection("pets").document(petID).collection("reminders")
+                        .document(reminderID).update(map)
+
+                    val intent = Intent(this, RemindersActivity::class.java)
+                    intent.putExtra("reminderID", reminderID)
+                    intent.putExtra("petID", petID)
+                    startActivity(intent)
                 }
         }
 
