@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,16 +17,16 @@ class RemindersAdapter(private val mList:List<RemindersData>, private val contex
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val RemindersData = mList[position]
+        val remindersData = mList[position]
 
-        holder.title.text = RemindersData.title
-        holder.date.text = RemindersData.date
-        holder.frequency.text = RemindersData.frequency
+        holder.title.text = remindersData.title
+        holder.date.text = remindersData.date
+        holder.frequency.text = remindersData.frequency
 
         holder.title.setOnClickListener {
             val intent = Intent(context, ReminderActivity::class.java)
-            intent.putExtra("reminderID", RemindersData.reminderID)
-            intent.putExtra("petID", RemindersData.petID)
+            intent.putExtra("reminderID", remindersData.reminderID)
+            intent.putExtra("petID", remindersData.petID)
             startActivity(context, intent, bundle)
         }
     }
