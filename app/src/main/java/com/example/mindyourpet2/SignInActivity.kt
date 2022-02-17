@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import com.example.mindyourpet2.R.id.login
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -17,6 +20,16 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
         auth = Firebase.auth
+
+        val loginButton: Button = findViewById(R.id.login)
+        loginButton.setOnClickListener {
+            val editTextEmail: EditText = findViewById(R.id.email)
+            val email = editTextEmail.text.toString()
+            val editTextPassword: EditText = findViewById(R.id.password)
+            val password = editTextPassword.text.toString()
+
+            signIn(email, password)
+        }
     }
 
     public override fun onStart() {
