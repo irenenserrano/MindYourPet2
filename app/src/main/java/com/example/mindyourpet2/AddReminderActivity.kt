@@ -79,6 +79,13 @@ class AddReminderActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Reminder Added", Toast.LENGTH_SHORT).show()
                 editText.text.clear()
+
+                val intent = Intent(this, Receiver::class.java)
+                intent.putExtra("reminderTitle", reminderTitle)
+                val pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE)
+
+                val am: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+                am.set(AlarmManager.RTC_WAKEUP, combinedCal.timeInMillis, pendingIntent)
             } else {
                 Toast.makeText(this, "Please enter a Reminder Title", Toast.LENGTH_LONG).show()
             }
