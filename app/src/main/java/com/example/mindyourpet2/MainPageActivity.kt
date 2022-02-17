@@ -19,7 +19,8 @@ class MainPageActivity : AppCompatActivity() {
 
         val createButton: Button = findViewById(R.id.create_account)
         createButton.setOnClickListener {
-            Toast.makeText(this, "test", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
         }
 
     }

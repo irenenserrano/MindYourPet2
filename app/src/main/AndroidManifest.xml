@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MindYourPet2">
         <activity
-            android:name=".MainPageActivity"
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PetProfilesActivity"
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
@@ -31,7 +34,7 @@
             android:name=".AddReminderActivity"
             android:exported="false" />
         <activity
-            android:name=".PetProfilesActivity"
+            android:name=".MainPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
