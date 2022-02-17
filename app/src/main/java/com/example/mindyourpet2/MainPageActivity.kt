@@ -1,5 +1,6 @@
 package com.example.mindyourpet2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -12,7 +13,8 @@ class MainPageActivity : AppCompatActivity() {
 
         val loginButton: Button = findViewById(R.id.login)
         loginButton.setOnClickListener {
-            Toast.makeText(this, "login", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
         }
 
         val createButton: Button = findViewById(R.id.create_account)

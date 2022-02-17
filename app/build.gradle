@@ -10,13 +10,13 @@ android {
     defaultConfig {
         applicationId "com.example.mindyourpet2"
         minSdk 21
-        targetSdk 30
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        minSdkVersion 31
-        targetSdkVersion 31
+        minSdkVersion 29
+        targetSdkVersion 29
     }
 
     buildTypes {
@@ -51,4 +51,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.work:work-runtime-ktx:2.7.0'
+
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-auth-ktx'
 }
