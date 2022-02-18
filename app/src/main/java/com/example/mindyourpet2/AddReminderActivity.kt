@@ -1,11 +1,10 @@
 package com.example.mindyourpet2
 
-import android.app.AlarmManager
-import android.app.Dialog
-import android.app.PendingIntent
-import android.app.TimePickerDialog
+import android.app.*
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
@@ -82,17 +81,37 @@ class AddReminderActivity : AppCompatActivity() {
                 Toast.makeText(this, "Reminder Added", Toast.LENGTH_SHORT).show()
                 editText.text.clear()
 
-                val intent = Intent(this, Receiver::class.java)
-                intent.putExtra("reminderTitle", reminderTitle)
-                val pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE)
-
-                val am: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-                am.set(AlarmManager.RTC_WAKEUP, combinedCal.timeInMillis, pendingIntent)
+                setAlarm(combinedCal)
+                createNotificationChannel(reminderTitle)
             } else {
                 Toast.makeText(this, "Please enter a Reminder Title", Toast.LENGTH_LONG).show()
             }
 
         }
 
+    }
+
+    private fun setAlarm(calendar: Calendar) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val thuReq: Long = Calendar.getInstance().timeInMillis +1
+        var reqReqCode = thuReq.toInt()
+        if (calendar.timeInMillis < System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+        }
+
+        val intent = Intent(this, Receiver::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+        val pendingIntent = PendingIntent.getBroadcast(this, reqReqCode, intent, 0)
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, calendar.time.hours *60*60*100L, pendingIntent)
+    }
+
+    private fun createNotificationChannel(name: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel(uid, name, importance)
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
     }
 }
