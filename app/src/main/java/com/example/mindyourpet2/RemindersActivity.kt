@@ -18,6 +18,7 @@ import java.sql.Timestamp
 import android.text.format.DateFormat
 import android.widget.Button
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import java.text.MessageFormat.format
 import java.util.*
 import kotlin.collections.ArrayList
@@ -26,6 +27,7 @@ class RemindersActivity : AppCompatActivity() {
 
     lateinit var petID: String
     val db = Firebase.firestore
+    val uid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "no user logged in"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +58,7 @@ class RemindersActivity : AppCompatActivity() {
 
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        db.collection("pets").document(petID).collection("reminders").get().addOnSuccessListener { result ->
+        db.collection("pets"+uid).document(petID).collection("reminders").get().addOnSuccessListener { result ->
             val data = mutableListOf<RemindersData>()
             for (document in result) {
                 val title = document.data["title"].toString()

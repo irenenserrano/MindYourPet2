@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Timestamp
@@ -16,6 +17,7 @@ class ReminderActivity : AppCompatActivity() {
     lateinit var reminderID: String
     lateinit var petID: String
     val db = Firebase.firestore
+    val uid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "no user logged in"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder)
@@ -26,7 +28,7 @@ class ReminderActivity : AppCompatActivity() {
         val reminderDate: TextView = findViewById(R.id.date)
         val reminderFrequency: TextView = findViewById(R.id.frequency)
 
-        db.collection("pets").document(petID).collection("reminders").document(reminderID).get()
+        db.collection("pets"+uid).document(petID).collection("reminders").document(reminderID).get()
             .addOnSuccessListener {
                 reminderTitle.setText(it.get("title").toString())
                 val timestamp = it.get("timestamp") as com.google.firebase.Timestamp

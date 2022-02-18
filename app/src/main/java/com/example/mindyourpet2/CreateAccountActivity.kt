@@ -8,7 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
@@ -44,19 +46,12 @@ class CreateAccountActivity : AppCompatActivity() {
     private fun createAccount(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                try {
-                    Log.d("create-account", "createUserWithEmail:success")
-                    val intent = Intent(this, MainPageActivity::class.java)
-                    startActivity(intent)
-                    Toast.makeText(this, "Account Created, please login", Toast.LENGTH_LONG).show()
-                } catch (existEmail: FirebaseAuthUserCollisionException) {
-                    Log.d("create-account", "onComplete: exist_email");
-                    Toast.makeText(this, "Account already exists", Toast.LENGTH_LONG).show()
-
-                }
+                Log.d("create-account", "createUserWithEmail:success")
+                val intent = Intent(this, PetProfilesActivity::class.java)
+                startActivity(intent)
             } else {
                 Log.w("create-account", "signInWithEmail:failure", task.exception)
-                Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Authentication failed", Toast.LENGTH_SHORT).show()
             }
         }
     }

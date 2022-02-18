@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class AddPetActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
-
+    val uid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "no user logged in"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_pet)
@@ -41,7 +42,7 @@ class AddPetActivity : AppCompatActivity() {
                 "species" to species
             )
 
-            db.collection("pets").add(pet).addOnSuccessListener { documentReference ->
+            db.collection("pets"+uid).add(pet).addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }.addOnFailureListener { e ->
                 Log.d(TAG, "Error adding document", e)

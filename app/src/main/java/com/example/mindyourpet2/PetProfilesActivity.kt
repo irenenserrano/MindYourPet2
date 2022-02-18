@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 class PetProfilesActivity : AppCompatActivity() {
     val db = Firebase.firestore
     lateinit var id: String
+    val uid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "no user logged in"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet_profiles)
@@ -48,7 +49,7 @@ class PetProfilesActivity : AppCompatActivity() {
         //this creates a vertical layout manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        db.collection("pets").get().addOnSuccessListener { result ->
+        db.collection("pets"+uid).get().addOnSuccessListener { result ->
             //ArrayList of PetProfilesData
             val data = mutableListOf<PetProfilesData>()
             result.forEach { document -> data.add(PetProfilesData(document.data["name"].toString(), document.id)) }

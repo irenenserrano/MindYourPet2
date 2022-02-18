@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Timestamp
@@ -28,6 +29,7 @@ class AddReminderActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
     lateinit var petID: String
+    val uid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "no user logged in"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_reminder)
@@ -70,7 +72,7 @@ class AddReminderActivity : AppCompatActivity() {
                     "frequency" to frequency
                 )
 
-                db.collection("pets").document(petID).collection("reminders").add(reminder)
+                db.collection("pets"+uid).document(petID).collection("reminders").add(reminder)
                     .addOnSuccessListener { documentReference ->
                         Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                     }.addOnFailureListener { e ->
