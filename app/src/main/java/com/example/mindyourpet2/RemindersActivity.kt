@@ -40,10 +40,6 @@ class RemindersActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val chatButton: View = findViewById(R.id.chat_button)
-        chatButton.setOnClickListener{
-            Toast.makeText(this, "test", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onStart() {

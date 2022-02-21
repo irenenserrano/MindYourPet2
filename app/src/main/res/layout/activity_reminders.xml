@@ -12,15 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple_500"
-        app:title="@string/reminders_title">
-
-        <ImageView
-            android:id="@+id/chat_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/message"
-            android:layout_gravity="right"/>
-    </androidx.appcompat.widget.Toolbar>
+        app:title="@string/reminders_title"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_reminders"
