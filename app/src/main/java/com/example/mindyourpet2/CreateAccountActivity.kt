@@ -51,7 +51,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 Log.w("create-account", "signInWithEmail:failure", task.exception)
-                Toast.makeText(baseContext, "Authentication failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, task.exception?.message ?: "Authentication failed", Toast.LENGTH_SHORT).show()
             }
         }
     }

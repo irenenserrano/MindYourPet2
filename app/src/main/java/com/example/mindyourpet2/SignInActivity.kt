@@ -49,7 +49,7 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 Log.d("sign-in", "signInWithEmail:failure", task.exception)
-                Toast.makeText(baseContext, "Authentication Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, task.exception?.message ?:"Authentication Failed", Toast.LENGTH_SHORT).show()
             }
 
         }
