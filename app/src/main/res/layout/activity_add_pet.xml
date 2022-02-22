@@ -18,8 +18,8 @@
         android:id="@+id/pet_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100sp"
         android:hint="Pet Name"
         android:inputType="textMultiLine|textPersonName"
         android:textAlignment="center" />
@@ -28,7 +28,7 @@
         android:id="@+id/pet_species"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_gravity="center"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
