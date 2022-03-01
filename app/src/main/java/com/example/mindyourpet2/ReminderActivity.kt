@@ -42,7 +42,7 @@ class ReminderActivity : AppCompatActivity() {
 
         val completeTask: Button = findViewById(R.id.complete_button)
         completeTask.setOnClickListener {
-            db.collection("pets").document(petID).collection("reminders").document(reminderID).get()
+            db.collection("pets"+uid).document(petID).collection("reminders").document(reminderID).get()
                 .addOnSuccessListener { reminder ->
                     val ts = reminder.get("timestamp") as com.google.firebase.Timestamp
                     val millisec = ts.seconds * 1000 + ts.nanoseconds / 1000000
@@ -56,7 +56,7 @@ class ReminderActivity : AppCompatActivity() {
                         ("Every Week") -> cal.add(Calendar.WEEK_OF_MONTH, 1)
                         ("Every Month") -> cal.add(Calendar.MONTH, 1)
                         ("Every Year") -> cal.add(Calendar.YEAR, 1)
-                        else -> { db.collection("pets").document(petID).collection("reminders").document(reminderID).delete()
+                        else -> { db.collection("pets"+uid).document(petID).collection("reminders").document(reminderID).delete()
                         }
                     }
 
@@ -65,7 +65,7 @@ class ReminderActivity : AppCompatActivity() {
                     Toast.makeText(this, date, Toast.LENGTH_LONG).show()
                     val time = Timestamp(cal.timeInMillis)
                     val map = mapOf( "timestamp" to time)
-                    db.collection("pets").document(petID).collection("reminders")
+                    db.collection("pets"+uid).document(petID).collection("reminders")
                         .document(reminderID).update(map)
 
                     val intent = Intent(this, RemindersActivity::class.java)
